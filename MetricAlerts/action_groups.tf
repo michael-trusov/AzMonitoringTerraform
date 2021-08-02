@@ -1,5 +1,5 @@
 locals {
-  apim_id = data.azurerm_api_management.ctc_test_apim.id
+  apim_id = data.azurerm_api_management.apim.id
 
   platform_team_ag = {
     project_name  = var.project_name
@@ -25,7 +25,7 @@ locals {
     webhook_receiver = [
       {
         name                    = "tests-aggregator-api"
-        service_uri             = "https://ctc-test-client-ghv-app.azurewebsites.net/api/tests/callback/alert",
+        service_uri             = "https://sandbox-test-client-app.azurewebsites.net/api/tests/callback/alert",
         use_common_alert_schema = true
       }
     ]
@@ -54,10 +54,10 @@ locals {
 
     azure_function_receiver = [
       {
-        name                     = "mocked-notification-reciever"
-        function_app_resource_id = "/subscriptions/470efd2f-74d7-4a6b-b5d8-a811f6c874e6/resourcegroups/ctc-personal-apim-we-rg/providers/Microsoft.Web/sites/ctc-personal-test-api"
-        function_name            = "mocked_notification_reciever"
-        http_trigger_url         = "https://ctc-personal-test-api.azurewebsites.net/api/mocked_notification_reciever"
+        name                     = "sandbox-noi-funcapp"
+        function_app_resource_id = "/subscriptions/e321efb2-bff7-4ec0-a4a7-c5f95abef641/resourcegroups/ctc-sandbox-apidev-cc-rg/providers/Microsoft.Web/sites/sandbox-noi-funcapp"
+        function_name            = "apim-log-alert-analyzer"
+        http_trigger_url         = "https://sandbox-noi-funcapp.azurewebsites.net/api/apim-log-alert-analyzer"
         use_common_alert_schema  = true
       }
     ]
@@ -88,10 +88,10 @@ locals {
 
     azure_function_receiver = [
       {
-        name                     = "mocked-notification-reciever"
-        function_app_resource_id = "/subscriptions/470efd2f-74d7-4a6b-b5d8-a811f6c874e6/resourcegroups/ctc-personal-apim-we-rg/providers/Microsoft.Web/sites/ctc-personal-test-api"
-        function_name            = "mocked_notification_reciever"
-        http_trigger_url         = "https://ctc-personal-test-api.azurewebsites.net/api/mocked_notification_reciever"
+        name                     = "sandbox-noi-funcapp"
+        function_app_resource_id = "/subscriptions/e321efb2-bff7-4ec0-a4a7-c5f95abef641/resourcegroups/ctc-sandbox-apidev-cc-rg/providers/Microsoft.Web/sites/sandbox-noi-funcapp"
+        function_name            = "apim-noi-notification"
+        http_trigger_url         = "https://sandbox-noi-funcapp.azurewebsites.net/api/apim-noi-notification"
         use_common_alert_schema  = true
       }
     ]
@@ -121,10 +121,10 @@ locals {
 
     azure_function_receiver = [
       {
-        name                     = "mocked-notification-reciever"
-        function_app_resource_id = "/subscriptions/470efd2f-74d7-4a6b-b5d8-a811f6c874e6/resourcegroups/ctc-personal-apim-we-rg/providers/Microsoft.Web/sites/ctc-personal-test-api"
-        function_name            = "mocked_notification_reciever"
-        http_trigger_url         = "https://ctc-personal-test-api.azurewebsites.net/api/mocked_notification_reciever"
+        name                     = "sandbox-noi-funcapp"
+        function_app_resource_id = "/subscriptions/e321efb2-bff7-4ec0-a4a7-c5f95abef641/resourcegroups/ctc-sandbox-apidev-cc-rg/providers/Microsoft.Web/sites/sandbox-noi-funcapp"
+        function_name            = "apim-noi-notification"
+        http_trigger_url         = "https://sandbox-noi-funcapp.azurewebsites.net/api/apim-noi-notification"
         use_common_alert_schema  = true
       }
     ]

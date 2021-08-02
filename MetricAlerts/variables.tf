@@ -1,7 +1,10 @@
-variable "environment" { default = "personal" }
-variable "location" { default = "West Europe" }
-variable "location_code" { default = "we" }
-variable "project_name" { default = "apim" }
+variable "subscription_id" { default = "e321efb2-bff7-4ec0-a4a7-c5f95abef641" }
+variable "tenant_id" { default = "bd6704ff-1437-477c-9ac9-c30d6f5133c5" }
+variable "costcenter" { default = "9100032" }
+variable "environment" { default = "sandbox"}
+variable "location" { default = "Canada Central" }
+variable "location_code" { default = "cc" }
+variable "project_name" { default = "apidev" }
 variable "brand" { default = "ctc" }
 
 variable "api_management" { default = {} }
