@@ -1,5 +1,5 @@
 module "monitoring" {
-  source = "../../../../Source/eis-terraform-modules/terraform-azurerm-monitor"
+  source = "../../../../../Source/eis-terraform-modules/terraform-azurerm-monitor"
 
   resource_id       = var.api_management.id
   log_analytical_id = var.azurerm_log_analytics_workspace_id
