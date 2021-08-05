@@ -7,6 +7,8 @@ variable "location_code" { default = "cc" }
 variable "project_name" { default = "apidev" }
 variable "brand" { default = "ctc" }
 
+variable "monitoring_frontdoor_id" {}
+
 variable "api_management" { default = {} }
 
 variable "app_service_plan_id" { default = {} }
@@ -39,6 +41,12 @@ variable "query_alerts" {
 variable "metric_alerts" {
   description = "Metric Alerts"
   type        = map(any)
+}
+
+variable "frontdoor_metric_alerts" {
+  description = "Azure Frontdoor Metric Alerts."
+  type        = map(any)
+  default     = null
 }
 
 variable "templates" {

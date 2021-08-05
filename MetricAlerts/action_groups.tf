@@ -20,14 +20,17 @@ locals {
 
     voice_receiver = []
 
-    azure_function_receiver = []
-
-    webhook_receiver = [
+    azure_function_receiver = [
       {
-        name                    = "tests-aggregator-api"
-        service_uri             = "https://sandbox-test-client-app.azurewebsites.net/api/tests/callback/alert",
-        use_common_alert_schema = true
+        name                     = "sandbox-noi-funcapp"
+        function_app_resource_id = "/subscriptions/e321efb2-bff7-4ec0-a4a7-c5f95abef641/resourcegroups/ctc-sandbox-apidev-cc-rg/providers/Microsoft.Web/sites/sandbox-noi-funcapp"
+        function_name            = "apim-noi-notification"
+        http_trigger_url         = "https://sandbox-noi-funcapp.azurewebsites.net/api/apim-noi-notification"
+        use_common_alert_schema  = true
       }
+    ]
+
+    webhook_receiver = [      
     ]
   }
 

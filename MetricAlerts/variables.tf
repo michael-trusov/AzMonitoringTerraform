@@ -14,6 +14,7 @@ variable "log_analytical_id" {
   default     = null
 }
 
+
 variable "api_metric_alerts" {
   type = map(object({
     project_name      = string

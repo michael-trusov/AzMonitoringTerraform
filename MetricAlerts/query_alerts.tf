@@ -15,6 +15,8 @@
 */
 
 locals {
+  more_details = "https://confluence.corp.ad.ctc/display/APT/Logging+and+Monitoring+of+APIM"
+
   /*
     Alert - MUC1A.1
     
@@ -32,8 +34,9 @@ locals {
     severity      = 4
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
-    query_name = "apim-muc1A1-test"
+    query_name = "apim-muc1A1"
 
     query = <<-QUERY
     let AllRequests = ApiManagementGatewayLogs
@@ -76,6 +79,7 @@ locals {
     severity      = 2
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc1A2"
 
@@ -120,6 +124,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc1A3"
 
@@ -164,6 +169,7 @@ locals {
     severity      = 0
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc1A4"
 
@@ -214,6 +220,8 @@ locals {
     severity          = "3"
     frequency         = "5"
     time_window       = "30"
+    throttling    = 0
+
     trigger_operator  = "GreaterThan"
     trigger_threshold = "0"
 
@@ -242,9 +250,11 @@ locals {
     QUERY
 
     description       = format("%s %s", "If at least 50% of requests are processed with duration higher than 900ms and it is observable during 5 min of time and part of APIM is greater than 800 ms - report incident to Platform team with Critical severity. More details:", local.more_details)
-    severity          = "1"
-    frequency         = "5"
-    time_window       = "30"
+    severity          = 1
+    frequency         = 5
+    time_window       = 30
+    throttling    = 0
+
     trigger_operator  = "GreaterThan"
     trigger_threshold = "0"
 
@@ -276,6 +286,8 @@ locals {
     severity          = "1"
     frequency         = "5"
     time_window       = "30"
+    throttling    = 0
+
     trigger_operator  = "GreaterThan"
     trigger_threshold = "0"
 
@@ -307,6 +319,8 @@ locals {
     severity          = "0"
     frequency         = "5"
     time_window       = "30"
+    throttling        = 0
+
     trigger_operator  = "GreaterThan"
     trigger_threshold = "0"
 
@@ -340,6 +354,8 @@ locals {
     severity          = "0"
     frequency         = "5"
     time_window       = "30"
+    throttling    = 0
+
     trigger_operator  = "GreaterThan"
     trigger_threshold = "0"
 
@@ -373,6 +389,8 @@ locals {
     severity          = "0"
     frequency         = "5"
     time_window       = "30"
+    throttling    = 0
+
     trigger_operator  = "GreaterThan"
     trigger_threshold = "0"
 
@@ -398,6 +416,7 @@ locals {
     severity      = 3
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc3A1"
 
@@ -443,6 +462,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc3A2"
 
@@ -487,6 +507,7 @@ locals {
     severity      = 3
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc4A1"
 
@@ -531,6 +552,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc4A2"
 
@@ -575,6 +597,7 @@ locals {
     severity      = 2
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc5A1"
 
@@ -619,6 +642,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc5A2"
 
@@ -663,6 +687,7 @@ locals {
     severity      = 3
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc6A1"
 
@@ -707,6 +732,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc6A2"
 
@@ -751,6 +777,7 @@ locals {
     severity      = 3
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc7A1"
 
@@ -795,6 +822,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc7A2"
 
@@ -839,6 +867,7 @@ locals {
     severity      = 2
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc8A1"
 
@@ -883,6 +912,7 @@ locals {
     severity      = 1
     frequency     = 5
     time_window   = 30
+    throttling    = 0
 
     query_name = "apim-muc8A2"
 
