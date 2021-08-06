@@ -71,21 +71,26 @@ module "main" {
   }
 
   metric_alerts = {
-    alert_muc1A1 = local.alert_muc1A1,
-    alert_muc1A2 = local.alert_muc1A2,
-    alert_muc1A3 = local.alert_muc1A3,
-    alert_muc1A4 = local.alert_muc1A4,
-    alert_muc3A1 = local.alert_muc3A1,
-    alert_muc3A2 = local.alert_muc3A2,
-    alert_muc4A1 = local.alert_muc4A1,
-    alert_muc4A2 = local.alert_muc4A2,
-    alert_muc5A1 = local.alert_muc5A1,
-    alert_muc5A2 = local.alert_muc5A2,
-    alert_muc6A1 = local.alert_muc6A1,
-    alert_muc6A2 = local.alert_muc6A2,
-    alert_muc7A1 = local.alert_muc7A1,
-    alert_muc7A2 = local.alert_muc7A2
-
+    apim_alert_muc1A1 = local.apim_alert_muc1A1,
+    apim_alert_muc1A2 = local.apim_alert_muc1A2,
+    apim_alert_muc1A3 = local.apim_alert_muc1A3,
+    apim_alert_muc1A4 = local.apim_alert_muc1A4,
+    apim_alert_muc3A1 = local.apim_alert_muc3A1,
+    apim_alert_muc3A2 = local.apim_alert_muc3A2,
+    apim_alert_muc4A1 = local.apim_alert_muc4A1,
+    apim_alert_muc4A2 = local.apim_alert_muc4A2,
+    apim_alert_muc5A1 = local.apim_alert_muc5A1,
+    apim_alert_muc5A2 = local.apim_alert_muc5A2,
+    apim_alert_muc6A1 = local.apim_alert_muc6A1,
+    apim_alert_muc6A2 = local.apim_alert_muc6A2,
+    apim_alert_muc7A1 = local.apim_alert_muc7A1,
+    apim_alert_muc7A2 = local.apim_alert_muc7A2,
+    apim_alert_muc8A1  = local.apim_alert_muc8A1,
+    apim_alert_muc8A2  = local.apim_alert_muc8A2,
+    apim_alert_muc9A1  = local.apim_alert_muc9A1,
+    apim_alert_muc9A2  = local.apim_alert_muc9A2,
+    apim_alert_muc10A1 = local.apim_alert_muc10A1,
+    apim_alert_muc10A2 = local.apim_alert_muc10A2
   }
 
   frontdoor_metric_alerts = {
