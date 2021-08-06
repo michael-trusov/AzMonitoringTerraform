@@ -18,12 +18,12 @@ locals {
   more_details = "https://confluence.corp.ad.ctc/display/APT/Logging+and+Monitoring+of+APIM"
 
   /*
-    Alert - MUC1A.1
+    # Alert - MUC1A.1
     
-    Condition: 
-    If at least 50% of requests are processed with duration higher than 500ms and 
-    it is observable during 5 mins of time - report incident to Platform team with minimal severity.
-  */
+    # Condition: 
+    # If at least 50% of requests are processed with duration higher than 500ms and 
+    # it is observable during 5 mins of time - report incident to Platform team with minimal severity.
+
   alert_muc1A1_description = format("%s %s", "If at least 50% of requests are processed with duration higher than 500ms and it is observable during 5 mins of time - report incident to Platform team with minimal severity. More details:", local.more_details)
   alert_muc1A1 = {
     environment   = var.environment
@@ -40,11 +40,11 @@ locals {
 
     query = <<-QUERY
     let AllRequests = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(5m)
+    | where TimeGenerated > ago(10m)
     | count
     | project TempCol = "Temp", NumberOfRequests = Count;
     let RequestsWithDelay = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(5m) and BackendTime > 500
+    | where TimeGenerated > ago(10m) and BackendTime > 500
     | count
     | project TempCol = "Temp", NumberOfDelayedRequests = Count;
     AllRequests  
@@ -61,13 +61,12 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC1A.2
+  
+    # Alert - MUC1A.2
     
-    Condition: 
-    If at least 50% of requests are processed with duration higher than 1000ms for 5 mins of time 
-    - report incident to Platform team with severity major and send e-mail with template to Platform team.
-  */
+    # Condition: 
+    # If at least 50% of requests are processed with duration higher than 1000ms for 5 mins of time 
+    # - report incident to Platform team with severity major and send e-mail with template to Platform team.
 
   alert_muc1A2_description = format("%s %s", "If at least 50% of requests are processed with duration higher than 1000ms for 5 mins of time ( or maybe without waiting) - report incident to Platform team with severity major and send e-mail with template to Platform team. More details:", local.more_details)
   alert_muc1A2 = {
@@ -85,11 +84,11 @@ locals {
 
     query = <<-QUERY
     let AllRequests = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(5m)
+    | where TimeGenerated > ago(10m)
     | count
     | project TempCol = "Temp", NumberOfRequests = Count;
     let RequestsWithDelay = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(5m) and BackendTime > 1000
+    | where TimeGenerated > ago(10m) and BackendTime > 1000
     | count
     | project TempCol = "Temp", NumberOfDelayedRequests = Count;
     AllRequests  
@@ -106,13 +105,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC1A.3
+  
+    # Alert - MUC1A.3
     
-    Condition: 
-    If 95% or requests is processed with duration higher than 500ms - for 1 mins of time - report incident to Platform team 
-    with severity Critical and send e-mail with template to Platform team and send SMS to Platform team.
-  */
+    # Condition: 
+    # If 95% or requests is processed with duration higher than 500ms - for 1 mins of time - report incident to Platform team 
+    # with severity Critical and send e-mail with template to Platform team and send SMS to Platform team.
+  
 
   alert_muc1A3_description = format("%s %s", "If 95% or requests is processed with duration higher than 500ms - for 1 mins of time - report incident to Platform team with severity Critical and send e-mail with template to Platform team and send SMS to Platform team. More details:", local.more_details)
   alert_muc1A3 = {
@@ -130,11 +129,11 @@ locals {
 
     query = <<-QUERY
     let AllRequests = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(1m)
+    | where TimeGenerated > ago(10m)
     | count
     | project TempCol = "Temp", NumberOfRequests = Count;
     let RequestsWithDelay = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(1m) and BackendTime > 500
+    | where TimeGenerated > ago(10m) and BackendTime > 500
     | count
     | project TempCol = "Temp", NumberOfDelayedRequests = Count;
     AllRequests  
@@ -151,14 +150,14 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC1A.4
+  
+    # Alert - MUC1A.4
     
-    Condition: 
-    If 95% or requests is processed with duration higher than 1000ms - for 1 min of time - report incident to 
-    Platform team with severity BLOCKER and send e-mail with template to Platform team and send SMS to Platform team 
-    and Call Platform team.
-  */
+    # Condition: 
+    # If 95% or requests is processed with duration higher than 1000ms - for 1 min of time - report incident to 
+    # Platform team with severity BLOCKER and send e-mail with template to Platform team and send SMS to Platform team 
+    # and Call Platform team.
+  
   alert_muc1A4_description = format("%s %s", "If 95% or requests is processed with duration higher than 1000ms - for 1 min of time - report incident to Platform team with severity BLOCKER and send e-mail with template to Platform team and send SMS to Platform team and Call Platform team. More details:", local.more_details)
   alert_muc1A4 = {
     environment   = var.environment
@@ -175,11 +174,11 @@ locals {
 
     query = <<-QUERY
     let AllRequests = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(1m)
+    | where TimeGenerated > ago(10m)
     | count
     | project TempCol = "Temp", NumberOfRequests = Count;
     let RequestsWithDelay = ApiManagementGatewayLogs
-    | where TimeGenerated > ago(1m) and BackendTime > 1000
+    | where TimeGenerated > ago(10m) and BackendTime > 1000
     | count
     | project TempCol = "Temp", NumberOfDelayedRequests = Count;
     AllRequests  
@@ -195,7 +194,7 @@ locals {
     action_group_name = local.platform_team_critical_ag.group_name
     action_group_id   = ""
   }
-
+*/
   # Condition
   # If at least 50% of requests are processed with duration higher than 900 ms and it is observable during 5 min 
   # of time and part of APIM is greater than 400 ms - report incident to Platform team with Critical severity.
@@ -397,14 +396,14 @@ locals {
     action_group_name = local.platform_team_critical_ag.group_name
     action_group_id   = ""
   }
-
-  /*
-    Alert - MUC3A.1
+/*
+  
+    # Alert - MUC3A.1
     
-    Condition: 
-    If at least 50% of requests receives response with 502 response code for 5 minutes then send email notification 
-    to Platform team & API Developer Team.
-  */
+    # Condition: 
+    # If at least 50% of requests receives response with 502 response code for 5 minutes then send email notification 
+    # to Platform team & API Developer Team.
+  
 
   alert_muc3A1_description = format("%s %s", "If at least 50% of requests receives response with 502 response code for 5 minutes then send email notification to Platform team & API Developer Team. More details:", local.more_details)
   alert_muc3A1 = {
@@ -444,13 +443,13 @@ locals {
   }
 
 
-  /*
-    Alert - MUC3A.2
+  
+    # Alert - MUC3A.2
     
-    Condition: 
-    If at least 75% of requests receives response with 502 response code for 1 minute then send email notification
-    to Platform team and create Incident ticket in Service Now.
-  */
+    # Condition: 
+    # If at least 75% of requests receives response with 502 response code for 1 minute then send email notification
+    # to Platform team and create Incident ticket in Service Now.
+
 
   alert_muc3A2_description = format("%s %s", "If at least 75% of requests receives response with 502 response code for 1 minute then send email notification to Platform team and create Incident ticket in Service Now. More details:", local.more_details)
   alert_muc3A2 = {
@@ -489,13 +488,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC4A.1
+  
+    # Alert - MUC4A.1
     
-    Condition: 
-    If at least 50% of requests receives response with 500 or 400 response code for 10 minutes 
-    then send email notification to API Developer Team.
-  */
+    # Condition: 
+    # If at least 50% of requests receives response with 500 or 400 response code for 10 minutes 
+    # then send email notification to API Developer Team.
+  
 
   alert_muc4A1_description = format("%s %s", "If at least 50% of requests receives response with 500 or 400 response code for 10 minutes then send email notification to API Developer Team. More details:", local.more_details)
   alert_muc4A1 = {
@@ -534,13 +533,12 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC4A.2
+  
+    # Alert - MUC4A.2
     
-    Condition: 
-    If at least 75% of requests receives response with 500 or 400 response code for 5 minutes then 
-    send email notification to API Developer Team and create ticket with Severity Critical in Service Now for the API Developer Team.
-  */
+    # Condition: 
+    # If at least 75% of requests receives response with 500 or 400 response code for 5 minutes then 
+    # send email notification to API Developer Team and create ticket with Severity Critical in Service Now for the API Developer Team.
 
   alert_muc4A2_description = format("%s %s", "If at least 75% of requests receives response with 500 or 400 response code for 5 minutes then send email notification to API Developer Team and create ticket with Severity Critical in Service Now for the API Developer Team. More details:", local.more_details)
   alert_muc4A2 = {
@@ -579,13 +577,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC5A.1
+  
+    # Alert - MUC5A.1
     
-    Condition: 
-    If at least 50% of requests receives 403 response code for 10 minutes then send email notification 
-    to API Developer Team and create ticket with severity Normal in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 50% of requests receives 403 response code for 10 minutes then send email notification 
+    # to API Developer Team and create ticket with severity Normal in Service Now for further investigation.
+  
 
   alert_muc5A1_description = format("%s %s", "If at least 50% of requests receives 403 response code for 10 minutes then send email notification to API Developer Team and create ticket with severity Normal in Service Now for further investigation. More details:", local.more_details)
   alert_muc5A1 = {
@@ -624,14 +622,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC5A.2
+  
+    # Alert - MUC5A.2
     
-    Condition: 
-    If at least 75% of requests receives 403 response code for 5 minutes then send email notification to 
-    API Developer Team and create ticket with severity Critical in Service Now for further investigation.
-  */
-
+    # Condition: 
+    # If at least 75% of requests receives 403 response code for 5 minutes then send email notification to 
+    # API Developer Team and create ticket with severity Critical in Service Now for further investigation.
+  
   alert_muc5A2_description = format("%s %s", "If at least 75% of requests receives 403 response code for 5 minutes then send email notification to API Developer Team and create ticket with severity Critical in Service Now for further investigation. More details:", local.more_details)
   alert_muc5A2 = {
     environment   = var.environment
@@ -669,13 +666,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC6A.1
+  
+    # Alert - MUC6A.1
     
-    Condition: 
-    If at least 50% of requests receives 401 response code for 10 minutes then send email notification to
-    API Developer Team and create ticket with severity Normal in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 50% of requests receives 401 response code for 10 minutes then send email notification to
+    # API Developer Team and create ticket with severity Normal in Service Now for further investigation.
+  
 
   alert_muc6A1_description = format("%s %s", " More details:", local.more_details)
   alert_muc6A1 = {
@@ -714,13 +711,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC6A.2
+  
+    # Alert - MUC6A.2
     
-    Condition: 
-    If at least 75% of requests receives 401 response code for 5 minutes then send email notification 
-    to API Developer Team and create ticket with severity Critical in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 75% of requests receives 401 response code for 5 minutes then send email notification 
+    # to API Developer Team and create ticket with severity Critical in Service Now for further investigation.
+  
 
   alert_muc6A2_description = format("%s %s", "If at least 75% of requests receives 401 response code for 5 minutes then send email notification to API Developer Team and create ticket with severity Critical in Service Now for further investigation. More details:", local.more_details)
   alert_muc6A2 = {
@@ -759,13 +756,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC7A.1
+  
+    # Alert - MUC7A.1
     
-    Condition: 
-    If at least 50% of requests receives 404 response code for 10 minutes then send email notification to 
-    API Developer Team and create ticket with severity Normal in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 50% of requests receives 404 response code for 10 minutes then send email notification to 
+    # API Developer Team and create ticket with severity Normal in Service Now for further investigation.
+  
 
   alert_muc7A1_description = format("%s %s", "If at least 50% of requests receives 404 response code for 10 minutes then send email notification to API Developer Team and create ticket with severity Normal in Service Now for further investigation. More details:", local.more_details)
   alert_muc7A1 = {
@@ -804,13 +801,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC7A.2
+  
+    # Alert - MUC7A.2
     
-    Condition: 
-    If at least 75% of requests receives 404 response code for 5 minutes then send email notification to 
-    API Developer Team and create ticket with severity Critical in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 75% of requests receives 404 response code for 5 minutes then send email notification to 
+    # API Developer Team and create ticket with severity Critical in Service Now for further investigation.
+  
 
   alert_muc7A2_description = format("%s %s", "If at least 75% of requests receives 404 response code for 5 minutes then send email notification to API Developer Team and create ticket with severity Critical in Service Now for further investigation. More details:", local.more_details)
   alert_muc7A2 = {
@@ -849,13 +846,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC8A.1
+  
+    # Alert - MUC8A.1
     
-    Condition: 
-    If at least 50% of requests (use Gateway Response Code) receives 502 response code for 10 minutes then send 
-    email notification to Platform Team and create ticket with severity Major in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 50% of requests (use Gateway Response Code) receives 502 response code for 10 minutes then send 
+    # email notification to Platform Team and create ticket with severity Major in Service Now for further investigation.
+  
 
   alert_muc8A1_description = format("%s %s", "If at least 50% of requests (GatewayResponseCode) receives 502 response code for 10 minutes then send email notification to Platform Team and create ticket with severity Major in Service Now for further investigation. More details:", local.more_details)
   alert_muc8A1 = {
@@ -894,13 +891,13 @@ locals {
     action_group_id   = ""
   }
 
-  /*
-    Alert - MUC8A.2
+  
+    # Alert - MUC8A.2
     
-    Condition: 
-    If at least 75% of requests receives 502 response code for 5 minutes then send email notification to Platform Team 
-    and create ticket with severity Critical in Service Now for further investigation.
-  */
+    # Condition: 
+    # If at least 75% of requests receives 502 response code for 5 minutes then send email notification to Platform Team 
+    # and create ticket with severity Critical in Service Now for further investigation.
+  
 
   alert_muc8A2_description = format("%s %s", "If at least 75% of requests receives 502 response code for 5 minutes then send email notification to Platform Team and create ticket with severity Critical in Service Now for further investigation. More details:", local.more_details)
   alert_muc8A2 = {
@@ -938,4 +935,5 @@ locals {
     action_group_name = local.platform_team_critical_ag.group_name
     action_group_id   = ""
   }
+  */
 }
